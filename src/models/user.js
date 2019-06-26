@@ -2,9 +2,22 @@
 
 const mongoose = require('mongoose');
 
-const MessageSchema = require('../message');
-
 // Define the user schema
+
+//// Define private message schema
+const PrivateMessageSchema  = new mongoose.Schema({
+    poster: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
+    text: {
+        type: String,
+        required: true
+    }
+});
+
+PrivateMessageSchema.set('versionKey', false);
+PrivateMessageSchema.set('timestamps', true);
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -34,8 +47,8 @@ const UserSchema = new mongoose.Schema({
         default: false
     },
     expirationPremiumAccount: Date,
-    privateMessagesSent: [MessageSchema],
-    privateMessagesReceived: [MessageSchema]
+    privateMessagesSent: [PrivateMessageSchema],
+    privateMessagesReceived: [PrivateMessageSchema]
 });
 
 UserSchema.set('versionKey', false);

@@ -2,13 +2,28 @@
 
 const mongoose = require('mongoose');
 
-const MessageSchema = require('../message');
-
 // Define the group schema
+
+//// Define the group message schema
+const GroupMessageSchema  = new mongoose.Schema({
+    poster: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
+    text: {
+        type: String,
+        required: true
+    }
+});
+
+GroupMessageSchema.set('versionKey', false);
+GroupMessageSchema.set('timestamps', true);
+
+
 const GroupSchema  = new mongoose.Schema({
 
     owner : {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
 
@@ -33,13 +48,14 @@ const GroupSchema  = new mongoose.Schema({
         required: true
     },
 
-    members: [Schema.Types.ObjectId],
+    members: [mongoose.Schema.Types.ObjectId],
 
-    posts: [MessageSchema]
+    posts: [msg.MessageSchema]
 });
 
 GroupSchema.set('versionKey', false);
 GroupSchema.set('timestamps', true);
 
-// Export the Movie model
+
+// Export the Group model
 module.exports = mongoose.model('Group', GroupSchema);
