@@ -50,7 +50,7 @@ const GroupSchema  = new mongoose.Schema({
 
     members: [mongoose.Schema.Types.ObjectId],
 
-    posts: [msg.MessageSchema]
+    posts: [GroupMessageSchema]
 });
 
 GroupSchema.set('versionKey', false);

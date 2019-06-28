@@ -48,6 +48,9 @@ const checkAuthentication = (req, res, next) => {
 };
 
 const errorHandler = (err, req, res, next) => {
+
+    alert("error " + JSON.stringify(req.body, null, 2));
+
     if (res.headersSent) {
         return next(err)
     }

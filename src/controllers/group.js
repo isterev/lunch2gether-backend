@@ -4,6 +4,7 @@ const GroupModel = require('../models/group');
 
 
 const create = (req, res) => {
+
     if (Object.keys(req.body).length === 0) return res.status(400).json({
         error: 'Bad Request',
         message: 'The request body is empty'
@@ -65,6 +66,7 @@ const remove = (req, res) => {
 };
 
 const list  = (req, res) => {
+
     GroupModel.find({}).exec()
         .then(groups => res.status(200).json(groups))
         .catch(error => res.status(500).json({
