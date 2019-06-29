@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 // Define the group schema
 
 //// Define the group message schema
-const GroupMessageSchema  = new mongoose.Schema({
+const GroupMessageSchema = new mongoose.Schema({
     poster: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
@@ -20,11 +20,12 @@ GroupMessageSchema.set('versionKey', false);
 GroupMessageSchema.set('timestamps', true);
 
 
-const GroupSchema  = new mongoose.Schema({
+const GroupSchema = new mongoose.Schema({
 
-    owner : {
+    owner: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true
+        required: true,
+        index: true
     },
 
     dateFrom: {
@@ -39,7 +40,7 @@ const GroupSchema  = new mongoose.Schema({
         type: String,
         required: true
     },
-    description:{
+    description: {
         type: String,
         required: true
     },
@@ -48,7 +49,10 @@ const GroupSchema  = new mongoose.Schema({
         required: true
     },
 
-    members: [mongoose.Schema.Types.ObjectId],
+    members: {
+        type: [mongoose.Schema.Types.ObjectId],
+        index: true
+    },
 
     posts: [GroupMessageSchema]
 });

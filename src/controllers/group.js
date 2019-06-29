@@ -75,6 +75,16 @@ const list  = (req, res) => {
         }));
 };
 
+const listMyGroups  = (req, res) => {
+
+    GroupModel.find({ $or: [ { owner: req.params.id }, { members: req.params.id }] }).exec()
+        .then(groups => res.status(200).json(groups))
+        .catch(error => res.status(500).json({
+            error: 'Internal server error',
+            message: error.message
+        }));
+};
+
 
 
 module.exports = {
@@ -82,5 +92,6 @@ module.exports = {
     read,
     update,
     remove,
-    list
+    list,
+    listMyGroups
 };
