@@ -31,12 +31,6 @@ const UserSchema = new mongoose.Schema({
         unique: true
     },
 
-    eMail: {
-        type: String,
-        required: true,
-        unique: true
-    },
-
     isRestaurant: {
         type: Boolean,
         default: false
