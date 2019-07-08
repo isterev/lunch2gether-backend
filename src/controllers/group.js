@@ -10,7 +10,10 @@ const create = (req, res) => {
         message: 'The request body is empty'
     });
 
-    GroupModel.create(req.body)
+    const group = Object.assign(req.body,{members: req.body.owner});
+
+    //GroupModel.create(req.body)
+    GroupModel.create(group)
         .then(group => res.status(201).json(group))
         .catch(error => res.status(500).json({
             error: 'Internal server error',

@@ -43,7 +43,7 @@ const login = (req,res) => {
 
 
 const register = (req,res) => {
-    if (!Object.prototype.hasOwnProperty.call(req.body, 'password')) return res.status(400).json({
+    if (!Object.prototype.hasOwnProperty.call(req.body, 'password')) return res.status(400).json({  // check if required things are there
         error: 'Bad Request',
         message: 'The request body must contain a password property'
     });
@@ -54,7 +54,6 @@ const register = (req,res) => {
     });
 
     const user = Object.assign(req.body, {password: bcrypt.hashSync(req.body.password, 8)});
-
 
     UserModel.create(user)
         .then(user => {
